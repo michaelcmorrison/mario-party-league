@@ -5,39 +5,91 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 
-import defaultData from "../content/data.json";
-import { useState } from "react";
+import type { Game, GameStats } from "../utils/types";
 
-type Game = {
-  gameId: number;
-  firstPlace: string;
-  secondPlace: string;
-  thirdPlace: string;
-};
-
-const columnHelper = createColumnHelper<Game>();
+const columnHelper = createColumnHelper<GameStats>();
 
 const columns = [
-  columnHelper.accessor("gameId", {
-    header: "Game ID",
-    cell: (info) => info.getValue(),
+  columnHelper.accessor("player.name", {
+    id: "player",
+    header: "Player",
   }),
-  columnHelper.accessor("firstPlace", {
-    header: "First Place",
-    cell: (info) => info.getValue(),
+  columnHelper.accessor("stars", {
+    id: "stars",
+    header: "Stars",
   }),
-  columnHelper.accessor("secondPlace", {
-    header: "Second Place",
-    cell: (info) => info.getValue(),
+  columnHelper.accessor("coins", {
+    id: "coins",
+    header: "Coins",
   }),
-  columnHelper.accessor("thirdPlace", {
-    header: "Third Place",
-    cell: (info) => info.getValue(),
+  columnHelper.accessor("minigame_wins", {
+    id: "minigames",
+    header: "Minigames",
+  }),
+  columnHelper.accessor("lucky_blocks", {
+    id: "lucky_blocks",
+    header: "Lucky Blocks",
+  }),
+  columnHelper.accessor("ally_minigame_wins", {
+    id: "ally-minigames",
+    header: "Ally Minigames",
+  }),
+  columnHelper.accessor("shops_visited", {
+    id: "shops-visited",
+    header: "Shops Visited",
+  }),
+  columnHelper.accessor("items_used", {
+    id: "items-used",
+    header: "Items Used",
+  }),
+  columnHelper.accessor("spaces_travelled", {
+    id: "spaces-travelled",
+    header: "Spaces Travelled",
+  }),
+  columnHelper.accessor("reactions_used", {
+    id: "reactions-used",
+    header: "Reactions",
+  }),
+  columnHelper.accessor("blue_spaces", {
+    id: "blue-spaces",
+    header: "Blue Spaces",
+  }),
+  columnHelper.accessor("red_spaces", {
+    id: "red-spaces",
+    header: "Red Spaces",
+  }),
+  columnHelper.accessor("luck_spaces", {
+    id: "luck-spaces",
+    header: "Luck Spaces",
+  }),
+  columnHelper.accessor("bad_luck_spaces", {
+    id: "bad-luck-spaces",
+    header: "Bad Luck Spaces",
+  }),
+  columnHelper.accessor("item_spaces", {
+    id: "item-spaces",
+    header: "Item Spaces",
+  }),
+  columnHelper.accessor("bowser_spaces", {
+    id: "bowser-spaces",
+    header: "Bowser Spaces",
+  }),
+  columnHelper.accessor("event_spaces", {
+    id: "event-spaces",
+    header: "Event Spaces",
+  }),
+  columnHelper.accessor("swap_spaces", {
+    id: "swap-spaces",
+    header: "Swap Spaces",
+  }),
+  columnHelper.accessor("vs_spaces", {
+    id: "vs-spaces",
+    header: "VS. Spaces",
   }),
 ];
 
-export default function Table() {
-  const [data, setData] = useState(() => [...defaultData]);
+export default function Table({ data }: { data: GameStats[] }) {
+  console.log(data);
 
   const table = useReactTable({
     data,
@@ -46,7 +98,7 @@ export default function Table() {
   });
 
   return (
-    <div className="p-2">
+    <div className="">
       <table className="border border-collapse w-full">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
