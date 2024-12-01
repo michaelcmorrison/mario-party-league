@@ -49,7 +49,7 @@ export default function Tables() {
   return (
     <div>
       {gameData &&
-        gameData.map((data, i) => (
+        gameData.map((data: any, i: number) => (
           <div>
             <h1>{data.board.name}</h1>
             <Table key={i} data={data["game_stats"]}></Table>
