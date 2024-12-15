@@ -7,6 +7,7 @@ export type GameStats = {
   player: {
     name: string;
   };
+  place: number;
   stars: number;
   coins: number;
   minigame_wins: number;
@@ -25,4 +26,10 @@ export type GameStats = {
   event_spaces: number;
   swap_spaces: number;
   vs_spaces: number;
+};
+
+export type PlayerStats = {
+  player: string;
+  games_played: number;
+  points: number;
 };

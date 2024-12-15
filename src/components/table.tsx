@@ -3,6 +3,7 @@ import {
   createColumnHelper,
   getCoreRowModel,
   flexRender,
+  getSortedRowModel,
 } from "@tanstack/react-table";
 
 import type { Game, GameStats } from "../utils/types";
@@ -13,6 +14,10 @@ const columns = [
   columnHelper.accessor("player.name", {
     id: "player",
     header: "Player",
+  }),
+  columnHelper.accessor("place", {
+    id: "place",
+    header: "Place",
   }),
   columnHelper.accessor("stars", {
     id: "stars",
@@ -89,28 +94,39 @@ const columns = [
 ];
 
 export default function Table({ data }: { data: GameStats[] }) {
-  console.log(data);
-
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   return (
-    <div className="">
+    <div className="text-sm">
       <table className="border border-collapse w-full">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th className="border" key={header.id}>
+                <th
+                  className={
+                    header.column.getCanSort()
+                      ? "border cursor-pointer select-none"
+                      : "border"
+                  }
+                  key={header.id}
+                  onClick={header.column.getToggleSortingHandler()}
+                >
                   {header.isPlaceholder
                     ? null
                     : flexRender(
                         header.column.columnDef.header,
                         header.getContext()
                       )}
+                  {{
+                    asc: " 🔼",
+                    desc: " 🔽",
+                  }[header.column.getIsSorted() as string] ?? null}
                 </th>
               ))}
             </tr>
