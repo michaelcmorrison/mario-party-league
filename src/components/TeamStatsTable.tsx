@@ -6,14 +6,14 @@ import {
   getSortedRowModel,
 } from "@tanstack/react-table";
 
-import type { PlayerStats } from "../utils/types";
+import type { TeamStats } from "../utils/types";
 
-const columnHelper = createColumnHelper<PlayerStats>();
+const columnHelper = createColumnHelper<TeamStats>();
 
 const columns = [
-  columnHelper.accessor("player", {
-    id: "name",
-    header: "Name",
+  columnHelper.accessor("team", {
+    id: "team",
+    header: "Team",
   }),
   columnHelper.accessor("games_played", {
     id: "gamesPlayed",
@@ -25,7 +25,7 @@ const columns = [
   }),
 ];
 
-export default function Table({ data }: { data: PlayerStats[] }) {
+export default function Table({ data }: { data: TeamStats[] }) {
   const table = useReactTable({
     data,
     columns,

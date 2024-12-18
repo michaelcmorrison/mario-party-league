@@ -102,8 +102,8 @@ export default function Table({ data }: { data: GameStats[] }) {
   });
 
   return (
-    <div className="text-sm">
-      <table className="border border-collapse w-full">
+    <div>
+      <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -111,8 +111,8 @@ export default function Table({ data }: { data: GameStats[] }) {
                 <th
                   className={
                     header.column.getCanSort()
-                      ? "border cursor-pointer select-none"
-                      : "border"
+                      ? "cursor-pointer select-none"
+                      : ""
                   }
                   key={header.id}
                   onClick={header.column.getToggleSortingHandler()}
@@ -136,7 +136,7 @@ export default function Table({ data }: { data: GameStats[] }) {
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td className="border px-4 py-2" key={cell.id}>
+                <td key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}

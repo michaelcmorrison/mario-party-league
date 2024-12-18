@@ -1,22 +1,71 @@
 ---
-
-import Tables from '../components/tables'
-
+import Tables from "../components/tables";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Mario Party League</title>
-	</head>
-	<body class="bg-zinc-800 text-white font-sans text-xl">
-		<section class="py-12">
-			<div class="container">
-				<Tables client:load></Tables>
-			</div>
-		</section>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Mario Party League</title>
+    <style is:global>
+      [x-cloak] {
+        display: none !important;
+      }
+
+      table {
+        table-layout: auto;
+        width: fit-content;
+        border-collapse: collapse;
+        color: #fff;
+        border: 1px solid #3f3f3f;
+        max-width: 100%;
+        overflow-x: auto;
+        display: block;
+      }
+
+      thead th {
+        background-color: #2d2d2d;
+        color: #f1f1f1;
+        padding: 10px;
+        border: 1px solid #3f3f3f;
+        text-align: left;
+        white-space: nowrap;
+        font-weight: bold;
+      }
+
+      tbody tr {
+        border-bottom: 1px solid #3f3f3f;
+      }
+
+      tbody tr:nth-child(odd) {
+        background-color: #242424;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #1e1e1e;
+      }
+
+      tbody tr:hover {
+        background-color: #3f3f3f;
+      }
+
+      td {
+        padding: 10px;
+        border: 1px solid #3f3f3f;
+        white-space: nowrap;
+      }
+
+      table {
+      }
+    </style>
+  </head>
+  <body class="bg-zinc-800 text-white text-sm font-sans">
+    <section class="py-12">
+      <div class="container">
+        <Tables client:load />
+      </div>
+    </section>
+  </body>
 </html>

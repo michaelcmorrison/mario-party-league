@@ -33,3 +33,15 @@ export type PlayerStats = {
   games_played: number;
   points: number;
 };
+
+export type TeamStats = {
+  team: string;
+  games_played: number;
+  points: number;
+};
+
+export type Achievement = {
+  achievement: string;
+  player: string;
+  amount: number;
+};
